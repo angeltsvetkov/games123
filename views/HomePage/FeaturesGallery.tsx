@@ -75,7 +75,7 @@ export default function FeaturesGallery({title, tag, tabs }: {title:any, tag:any
   }
 
   return (
-    <FeaturesGalleryWrapper>
+    <FeaturesGalleryWrapper id="usecases">
       <Content>
         <OverTitle>Test</OverTitle>
         <SectionTitle>Test</SectionTitle>
