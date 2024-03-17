@@ -5,6 +5,7 @@ import { media } from 'utils/media';
 import Container from './Container';
 import OverTitle from './OverTitle';
 import RichText from './RichText';
+import { generateId } from 'utils/generateId';
 
 export interface BasicSectionProps {
   imageUrl: string;
@@ -15,7 +16,7 @@ export interface BasicSectionProps {
 
 export default function BasicSection({ imageUrl, title, overTitle, reversed, children }: PropsWithChildren<BasicSectionProps>) {
   return (
-    <BasicSectionWrapper reversed={reversed}>
+    <BasicSectionWrapper reversed={reversed} id={generateId(title)}>
       {imageUrl && <ImageContainer>
         <NextImage src={imageUrl} alt={title} layout="fill" objectFit="cover" />
       </ImageContainer>}
