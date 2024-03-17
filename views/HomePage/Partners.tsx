@@ -5,6 +5,7 @@ import { Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Container from 'components/Container';
 import { media } from 'utils/media';
+import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 
 const PARTNER_LOGOS = [
   'logoipsum-logo-1.svg',
@@ -16,10 +17,10 @@ const PARTNER_LOGOS = [
   'logoipsum-logo-7.svg',
 ];
 
-export default function Partners() {
+export default function Partners({label, images}) {
   return (
     <PartnersWrapper>
-      <Title>official partners with</Title>
+      <Title>{label}</Title>
       <Swiper
         modules={[Autoplay]}
         slidesPerView={6}
@@ -34,9 +35,9 @@ export default function Partners() {
         }}
         className="swiper-wrapper"
       >
-        {PARTNER_LOGOS.map((logo) => (
-          <SwiperSlide key={logo}>
-            <NextImage src={'/partners/' + logo} alt={normalizePartnerLogoName(logo)} width={128} height={128} />
+        {images.map((image) => (
+          <SwiperSlide key={image}>
+            <NextImage src={getImageUrl(image)} alt={getImageTitle(image)} width={128} height={128} />
           </SwiperSlide>
         ))}
       </Swiper>

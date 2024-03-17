@@ -1,61 +1,73 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import styled from 'styled-components';
 import BasicSection from 'components/BasicSection';
-import Link from 'components/Link';
-import { EnvVars } from 'env';
-import { getAllPosts } from 'utils/postsFetcher';
+import Footer from 'components/Footer';
+import Navbar from 'components/Navbar';
+import WaveCta from 'components/WaveCta';
+import { getSite } from 'lib/siteFetcher';
+import { getImageUrl } from 'utils/getImageUrl';
 import Cta from 'views/HomePage/Cta';
 import Features from 'views/HomePage/Features';
 import FeaturesGallery from 'views/HomePage/FeaturesGallery';
 import Hero from 'views/HomePage/Hero';
 import Partners from 'views/HomePage/Partners';
-import ScrollableBlogPosts from 'views/HomePage/ScrollableBlogPosts';
-import Testimonials from 'views/HomePage/Testimonials';
 
-export default function Homepage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => <p className='pt-5'>{children}</p>,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="pt-6">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol>{children}</ol>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => <li><span>{children}</span></li>,
+    },
+  };
+
+  const navItems: NavItems = site.navigation.map(((navItem) => {
+    return {
+      label: navItem?.fields?.label,
+      url: navItem?.fields?.url
+    }
+  }));
+
   return (
     <>
       <Head>
-        <title>{EnvVars.SITE_NAME}</title>
+        <title>{site.title}</title>
         <meta
           name="description"
-          content="Tempor nostrud velit fugiat nostrud duis incididunt Lorem deserunt est tempor aute dolor ad elit."
+          content={site.subtitle}
         />
+        <link rel="icon" type="image/png" href={getImageUrl(site.favicon)} />
       </Head>
+      <Navbar items={navItems} logo={site.logo} />
       <HomepageWrapper>
         <WhiteBackgroundContainer>
-          <Hero />
-          <Partners />
-          <BasicSection imageUrl="/demo-illustration-1.svg" title="Lorem ipsum dolor sit amet consectetur." overTitle="sit amet gogo">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem error incidunt a doloremque voluptatem porro inventore
-              voluptate quo deleniti animi laboriosam.{' '}
-              <Link href="/help-center">Possimus ullam velit rem itaque consectetur, in distinctio?</Link> Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Soluta repellendus quia quos obcaecati nihil. Laudantium non accusantium, voluptate eum nesciunt
-              at suscipit quis est soluta?
-            </p>
-          </BasicSection>
-          <BasicSection imageUrl="/demo-illustration-2.svg" title="Lorem ipsum dolor sit." overTitle="lorem ipsum" reversed>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, quidem error incidunt a doloremque voluptatem porro inventore{' '}
-              <strong>voluptate quo deleniti animi laboriosam</strong>. Possimus ullam velit rem itaque consectetur, in distinctio?
-            </p>
-            <ul>
-              <li>Professional point 1</li>
-              <li>Professional remark 2</li>
-              <li>Professional feature 3</li>
-            </ul>
-          </BasicSection>
+          <Hero title={site.title} subtitle={site.subtitle} tag="productivity" image={getImageUrl(site?.heroImage)} primaryCta={site?.buttons[0]?.fields} secondaryCta={site?.buttons[1]?.fields} />
+          {site?.references?.fields?.enabled && <Partners label={site?.references?.fields?.label} images={site?.references?.fields?.images} />}
+          {site.sections.map((section, index: number) => {
+            return <BasicSection key={index} imageUrl={ getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
+              {documentToReactComponents(section?.fields?.content, options)}
+            </BasicSection>
+          }
+          )}
         </WhiteBackgroundContainer>
         <DarkerBackgroundContainer>
-          <Cta />
-          <FeaturesGallery />
-          <Features />
-          <Testimonials />
-          <ScrollableBlogPosts posts={posts} />
+          <Cta title={site?.cta?.fields?.title} tag={site?.cta?.fields?.tag} content={documentToReactComponents(site?.cta?.fields?.content)} primaryCta={site?.cta?.fields?.buttons[0]?.fields} secondaryCta={site?.cta?.fields?.buttons[1]?.fields} />
+          <FeaturesGallery title="TEST" tag="TEST" tabs={site?.usecases} />
+          <Features features={site.features} />
+          {/* <Testimonials /> */}
+          {/* <ScrollableBlogPosts posts={posts} /> */}
         </DarkerBackgroundContainer>
       </HomepageWrapper>
+      <WaveCta />
+      <Footer footer={site.footer}/>
     </>
   );
 }
@@ -89,7 +101,7 @@ const WhiteBackgroundContainer = styled.div`
 export async function getStaticProps() {
   return {
     props: {
-      posts: await getAllPosts(),
+      site: await getSite(),
     },
   };
 }

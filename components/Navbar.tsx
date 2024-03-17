@@ -1,9 +1,9 @@
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useNewsletterModalContext } from 'contexts/newsletter-modal.context';
 import { ScrollPositionEffectProps, useScrollPosition } from 'hooks/useScrollPosition';
 import { NavItems, SingleNavItem } from 'types';
 import { media } from 'utils/media';
@@ -11,7 +11,7 @@ import Button from './Button';
 import Container from './Container';
 import Drawer from './Drawer';
 import { HamburgerIcon } from './HamburgerIcon';
-import Logo from './Logo';
+import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 
 const ColorSwitcher = dynamic(() => import('../components/ColorSwitcher'), { ssr: false });
 
@@ -19,7 +19,7 @@ type NavbarProps = { items: NavItems };
 type ScrollingDirections = 'up' | 'down' | 'none';
 type NavbarContainerProps = { hidden: boolean; transparent: boolean };
 
-export default function Navbar({ items }: NavbarProps) {
+export default function Navbar({ items, logo }: NavbarProps) {
   const router = useRouter();
   const { toggle } = Drawer.useDrawer();
   const [scrollingDirection, setScrollingDirection] = useState<ScrollingDirections>('none');
@@ -69,12 +69,12 @@ export default function Navbar({ items }: NavbarProps) {
       <Content>
         <NextLink href="/" passHref>
           <LogoWrapper>
-            <Logo />
+            <Image src={getImageUrl(logo)} width={200} height={100} alt={getImageTitle(logo)}/><div>PM Board</div>
           </LogoWrapper>
         </NextLink>
         <NavItemList>
           {items.map((singleItem) => (
-            <NavItem key={singleItem.href} {...singleItem} />
+            <NavItem key={singleItem.label} {...singleItem} />
           ))}
         </NavItemList>
         <ColorSwitcherContainer>
@@ -88,21 +88,16 @@ export default function Navbar({ items }: NavbarProps) {
   );
 }
 
-function NavItem({ href, title, outlined }: SingleNavItem) {
-  const { setIsModalOpened } = useNewsletterModalContext();
-
-  function showNewsletterModal() {
-    setIsModalOpened(true);
-  }
+function NavItem({ url, label, outlined }: SingleNavItem) {
 
   if (outlined) {
-    return <CustomButton onClick={showNewsletterModal}>{title}</CustomButton>;
+    return <CustomButton>{title}</CustomButton>;
   }
 
   return (
     <NavItemWrapper outlined={outlined}>
-      <NextLink href={href} passHref>
-        <a>{title}</a>
+      <NextLink href={url} passHref>
+        <a>{label}</a>
       </NextLink>
     </NavItemWrapper>
   );

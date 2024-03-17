@@ -7,62 +7,63 @@ import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
 import ThreeLayersCircle from 'components/ThreeLayersCircle';
 import { media } from 'utils/media';
+import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 
-const TABS = [
-  {
-    title: 'Find relevant media contacts - multiline title',
-    description:
-      '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
-    imageUrl: '/demo-illustration-3.png',
-    baseColor: '249,82,120',
-    secondColor: '221,9,57',
-  },
-  {
-    title: 'Another amazing feature',
-    description:
-      '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
-    imageUrl: '/demo-illustration-4.png',
-    baseColor: '57,148,224',
-    secondColor: '99,172,232',
-  },
-  {
-    title: 'And yet... another truly fascinating feature',
-    description:
-      '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
-    imageUrl: '/demo-illustration-5.png',
-    baseColor: '88,193,132',
-    secondColor: '124,207,158',
-  },
-];
+// const TABS = [
+//   {
+//     title: 'Find relevant media contacts - multiline title',
+//     description:
+//       '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
+//     imageUrl: '/demo-illustration-3.png',
+//     baseColor: '249,82,120',
+//     secondColor: '221,9,57',
+//   },
+//   {
+//     title: 'Another amazing feature',
+//     description:
+//       '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
+//     imageUrl: '/demo-illustration-4.png',
+//     baseColor: '57,148,224',
+//     secondColor: '99,172,232',
+//   },
+//   {
+//     title: 'And yet... another truly fascinating feature',
+//     description:
+//       '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quidem ipsam ratione dicta quis cupiditate consequuntur laborum ducimus iusto velit.</p>',
+//     imageUrl: '/demo-illustration-5.png',
+//     baseColor: '88,193,132',
+//     secondColor: '124,207,158',
+//   },
+// ];
 
-export default function FeaturesGallery() {
-  const [currentTab, setCurrentTab] = useState(TABS[0]);
+export default function FeaturesGallery({title, tag, tabs }) {
+  const [currentTab, setCurrentTab] = useState(tabs[0]);
 
-  const imagesMarkup = TABS.map((singleTab, idx) => {
-    const isActive = singleTab.title === currentTab.title;
+  const imagesMarkup = tabs.map((singleTab, idx) => {
+    const isActive = singleTab?.fields?.title === currentTab?.fields?.title;
     const isFirst = idx === 0;
 
     return (
-      <ImageContainer key={singleTab.title} isActive={isActive}>
-        <NextImage src={singleTab.imageUrl} alt={singleTab.title} layout="fill" objectFit="contain" priority={isFirst} />
+      <ImageContainer key={singleTab?.fields?.title} isActive={isActive}>
+        <NextImage src={getImageUrl(singleTab?.fields?.image)} alt={getImageTitle(singleTab?.fields?.image)} layout="fill" objectFit="contain" priority={isFirst} />
       </ImageContainer>
     );
   });
 
-  const tabsMarkup = TABS.map((singleTab, idx) => {
-    const isActive = singleTab.title === currentTab.title;
+  const tabsMarkup = tabs.map((singleTab, idx) => {
+    const isActive = singleTab?.fields?.title === currentTab?.fields?.title;
 
     return (
       <Tab isActive={isActive} key={idx} onClick={() => handleTabClick(idx)}>
         <TabTitleContainer>
           <CircleContainer>
-            <ThreeLayersCircle baseColor={isActive ? 'transparent' : singleTab.baseColor} secondColor={singleTab.secondColor} />
+            <ThreeLayersCircle baseColor={isActive ? 'transparent' : singleTab?.fields?.baseColor} secondColor={singleTab?.fields?.secondColor} />
           </CircleContainer>
-          <h4>{singleTab.title}</h4>
+          <h4>{singleTab?.fields?.title}</h4>
         </TabTitleContainer>
         <Collapse isOpen={isActive} duration={300}>
           <TabContent>
-            <div dangerouslySetInnerHTML={{ __html: singleTab.description }}></div>
+            <div dangerouslySetInnerHTML={{ __html: singleTab?.fields?.description }}></div>
           </TabContent>
         </Collapse>
       </Tab>
@@ -70,14 +71,14 @@ export default function FeaturesGallery() {
   });
 
   function handleTabClick(idx: number) {
-    setCurrentTab(TABS[idx]);
+    setCurrentTab(tabs[idx]);
   }
 
   return (
     <FeaturesGalleryWrapper>
       <Content>
-        <OverTitle>features</OverTitle>
-        <SectionTitle>What are you signing in for?</SectionTitle>
+        <OverTitle>Test</OverTitle>
+        <SectionTitle>Test</SectionTitle>
       </Content>
       <GalleryWrapper>
         <TabsContainer>{tabsMarkup}</TabsContainer>

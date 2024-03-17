@@ -4,6 +4,7 @@ import AutofitGrid from 'components/AutofitGrid';
 import BasicCard from 'components/BasicCard';
 import Container from 'components/Container';
 import { media } from 'utils/media';
+import { getImageUrl } from 'utils/getImageUrl';
 
 const FEATURES = [
   {
@@ -62,12 +63,12 @@ const FEATURES = [
   },
 ];
 
-export default function Features() {
+export default function Features({ features }) {
   return (
     <Container>
       <CustomAutofitGrid>
-        {FEATURES.map((singleFeature, idx) => (
-          <BasicCard key={singleFeature.title} {...singleFeature} />
+        {features.map((singleFeature, idx) => (
+          <BasicCard key={idx} title={singleFeature.fields.title} description={singleFeature.fields.description} imageUrl={getImageUrl(singleFeature.fields.image)} />
         ))}
       </CustomAutofitGrid>
     </Container>

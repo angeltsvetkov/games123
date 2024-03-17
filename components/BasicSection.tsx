@@ -16,11 +16,11 @@ export interface BasicSectionProps {
 export default function BasicSection({ imageUrl, title, overTitle, reversed, children }: PropsWithChildren<BasicSectionProps>) {
   return (
     <BasicSectionWrapper reversed={reversed}>
-      <ImageContainer>
+      {imageUrl && <ImageContainer>
         <NextImage src={imageUrl} alt={title} layout="fill" objectFit="cover" />
-      </ImageContainer>
+      </ImageContainer>}
       <ContentContainer>
-        <CustomOverTitle>{overTitle}</CustomOverTitle>
+        {overTitle && <CustomOverTitle>{overTitle}</CustomOverTitle>}
         <Title>{title}</Title>
         <RichText>{children}</RichText>
       </ContentContainer>
@@ -29,7 +29,7 @@ export default function BasicSection({ imageUrl, title, overTitle, reversed, chi
 }
 
 const Title = styled.h1`
-  font-size: 5.2rem;
+  font-size: 4.5rem;
   font-weight: bold;
   line-height: 1.1;
   margin-bottom: 4rem;
