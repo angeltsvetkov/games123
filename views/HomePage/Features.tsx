@@ -63,11 +63,11 @@ const FEATURES = [
   },
 ];
 
-export default function Features({ features }) {
+export default function Features({ features }:{features:any}) {
   return (
     <Container>
       <CustomAutofitGrid>
-        {features.map((singleFeature, idx) => (
+        {features.map((singleFeature: { fields: { title: string; description: string; image: any; }; }, idx: React.Key | null | undefined) => (
           <BasicCard key={idx} title={singleFeature.fields.title} description={singleFeature.fields.description} imageUrl={getImageUrl(singleFeature.fields.image)} />
         ))}
       </CustomAutofitGrid>

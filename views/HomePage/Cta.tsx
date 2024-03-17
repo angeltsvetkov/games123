@@ -8,7 +8,7 @@ import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
 import { media } from 'utils/media';
 
-export default function Cta({title, tag, content, primaryCta, secondaryCta }) {
+export default function Cta({title, tag, content, primaryCta, secondaryCta }: {title:any, tag:any, content:any, primaryCta:any, secondaryCta:any}) {
   return (
     <CtaWrapper>
       <Container>

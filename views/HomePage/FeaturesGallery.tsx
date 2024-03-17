@@ -36,10 +36,10 @@ import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 //   },
 // ];
 
-export default function FeaturesGallery({title, tag, tabs }) {
+export default function FeaturesGallery({title, tag, tabs }: {title:any, tag:any, tabs:any}) {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
-  const imagesMarkup = tabs.map((singleTab, idx) => {
+  const imagesMarkup = tabs.map((singleTab: { fields: { title: React.Key | null | undefined; image: any; }; }, idx: number) => {
     const isActive = singleTab?.fields?.title === currentTab?.fields?.title;
     const isFirst = idx === 0;
 
@@ -50,7 +50,7 @@ export default function FeaturesGallery({title, tag, tabs }) {
     );
   });
 
-  const tabsMarkup = tabs.map((singleTab, idx) => {
+  const tabsMarkup = tabs.map((singleTab: { fields: { title: boolean | React.ReactChild | React.ReactFragment | React.ReactPortal | null | undefined; baseColor: string; secondColor: string; description: any; }; }, idx: number) => {
     const isActive = singleTab?.fields?.title === currentTab?.fields?.title;
 
     return (

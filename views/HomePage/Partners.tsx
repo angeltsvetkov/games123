@@ -17,7 +17,7 @@ const PARTNER_LOGOS = [
   'logoipsum-logo-7.svg',
 ];
 
-export default function Partners({label, images}) {
+export default function Partners({label, images}: {label:any, images:any}) {
   return (
     <PartnersWrapper>
       <Title>{label}</Title>
@@ -35,7 +35,7 @@ export default function Partners({label, images}) {
         }}
         className="swiper-wrapper"
       >
-        {images.map((image) => (
+        {images.map((image: React.Key | null | undefined) => (
           <SwiperSlide key={image}>
             <NextImage src={getImageUrl(image)} alt={getImageTitle(image)} width={128} height={128} />
           </SwiperSlide>

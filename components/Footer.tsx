@@ -9,14 +9,14 @@ type FooterListItems = SingleFooterListItem[];
 type SingleFooterList = { title: string; items: FooterListItems };
 type FooterItems = SingleFooterList[];
 
-export default function Footer({footer}) {
+export default function Footer({footer}:{footer:any}) {
   
-  const footerItems: FooterItems = footer.map((section)=> {
+  const footerItems: FooterItems = footer.map((section:any)=> {
     let footerSection = { 
       title: section?.fields?.title,
       items: []
     }
-    footerSection.items = section?.fields?.items.map((item)=> {
+    footerSection.items = section?.fields?.items.map((item:any)=> {
       return {
         label: item?.fields?.label,
         url: item?.fields?.url

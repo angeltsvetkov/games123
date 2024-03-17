@@ -6,20 +6,22 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { ScrollPositionEffectProps, useScrollPosition } from 'hooks/useScrollPosition';
 import { NavItems, SingleNavItem } from 'types';
+import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 import { media } from 'utils/media';
 import Button from './Button';
 import Container from './Container';
 import Drawer from './Drawer';
 import { HamburgerIcon } from './HamburgerIcon';
-import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
 
 const ColorSwitcher = dynamic(() => import('../components/ColorSwitcher'), { ssr: false });
 
-type NavbarProps = { items: NavItems };
+type NavbarProps = {
+  map(arg0: (singleItem: any) => JSX.Element): React.ReactNode; items: NavItems 
+};
 type ScrollingDirections = 'up' | 'down' | 'none';
 type NavbarContainerProps = { hidden: boolean; transparent: boolean };
 
-export default function Navbar({ items, logo }: NavbarProps) {
+export default function Navbar({ items, logo }: {items:any, logo:any}) {
   const router = useRouter();
   const { toggle } = Drawer.useDrawer();
   const [scrollingDirection, setScrollingDirection] = useState<ScrollingDirections>('none');
@@ -73,7 +75,7 @@ export default function Navbar({ items, logo }: NavbarProps) {
           </LogoWrapper>
         </NextLink>
         <NavItemList>
-          {items.map((singleItem) => (
+          {items.map((singleItem:any) => (
             <NavItem key={singleItem.label} {...singleItem} />
           ))}
         </NavItemList>
@@ -91,7 +93,7 @@ export default function Navbar({ items, logo }: NavbarProps) {
 function NavItem({ url, label, outlined }: SingleNavItem) {
 
   if (outlined) {
-    return <CustomButton>{title}</CustomButton>;
+    return <CustomButton>{label}</CustomButton>;
   }
 
   return (

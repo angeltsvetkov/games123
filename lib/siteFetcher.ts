@@ -13,7 +13,7 @@ export async function getSite() {
     limit: 1,
     include: 10,
     "fields.id": "pmboard.net",
-  }).then(function (entry) {
+  }).then(function (entry:any) {
     return entry.items[0].fields;
   });
 }

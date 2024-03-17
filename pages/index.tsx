@@ -1,5 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { BLOCKS, Document } from '@contentful/rich-text-types';
 import { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
 import WaveCta from 'components/WaveCta';
 import { getSite } from 'lib/siteFetcher';
+import { NavItems } from 'types';
 import { getImageUrl } from 'utils/getImageUrl';
 import Cta from 'views/HomePage/Cta';
 import Features from 'views/HomePage/Features';
@@ -18,18 +19,18 @@ import Partners from 'views/HomePage/Partners';
 export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => <p className='pt-5'>{children}</p>,
-      [BLOCKS.UL_LIST]: (node, children) => (
+      [BLOCKS.PARAGRAPH]: (node:any, children:any) => <p className='pt-5'>{children}</p>,
+      [BLOCKS.UL_LIST]: (node:any, children:any) => (
         <ul className="pt-6">{children}</ul>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => (
+      [BLOCKS.OL_LIST]: (node:any, children:any) => (
         <ol>{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (node, children) => <li><span>{children}</span></li>,
+      [BLOCKS.LIST_ITEM]: (node:any, children:any) => <li><span>{children}</span></li>,
     },
   };
 
-  const navItems: NavItems = site.navigation.map(((navItem) => {
+  const navItems: NavItems = site.navigation.map(((navItem: { fields: { label: any; url: any; }; }) => {
     return {
       label: navItem?.fields?.label,
       url: navItem?.fields?.url
@@ -51,7 +52,7 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
         <WhiteBackgroundContainer>
           <Hero title={site.title} subtitle={site.subtitle} tag="productivity" image={getImageUrl(site?.heroImage)} primaryCta={site?.buttons[0]?.fields} secondaryCta={site?.buttons[1]?.fields} />
           {site?.references?.fields?.enabled && <Partners label={site?.references?.fields?.label} images={site?.references?.fields?.images} />}
-          {site.sections.map((section, index: number) => {
+          {site.sections.map((section: { fields: { image: any; title: string; tag: string; imagePosition: string; content: Document; }; }, index: number) => {
             return <BasicSection key={index} imageUrl={ getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
               {documentToReactComponents(section?.fields?.content, options)}
             </BasicSection>

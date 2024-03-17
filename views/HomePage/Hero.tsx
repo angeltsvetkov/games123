@@ -1,5 +1,5 @@
-import NextLink from 'next/link';
 import Image from 'next/image'
+import NextLink from 'next/link';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import ButtonGroup from 'components/ButtonGroup';
@@ -7,7 +7,7 @@ import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import { media } from 'utils/media';
 
-export default function Hero({ title, subtitle, tag, image, primaryCta, secondaryCta }) {
+export default function Hero({ title, subtitle, tag, image, primaryCta, secondaryCta }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any }) {
   return (
     <HeroWrapper>
       <Contents>
