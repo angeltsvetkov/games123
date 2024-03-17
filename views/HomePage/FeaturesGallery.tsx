@@ -6,8 +6,8 @@ import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import SectionTitle from 'components/SectionTitle';
 import ThreeLayersCircle from 'components/ThreeLayersCircle';
-import { media } from 'utils/media';
 import { getImageTitle, getImageUrl } from 'utils/getImageUrl';
+import { media } from 'utils/media';
 
 // const TABS = [
 //   {

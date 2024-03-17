@@ -1,3 +1,3 @@
 export function generateId(string: string) {
-  return string.replace(/ /g, '_');
+  return string.replace(/ /g, '-');
 }
