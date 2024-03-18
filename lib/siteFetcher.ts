@@ -1,5 +1,5 @@
 let contentful = require("contentful");
-
+export const dynamic = 'force-dynamic'
 export async function getSite() {
   console.log("process.env.SPACE_ID: " + process.env.SPACE_ID);
   
