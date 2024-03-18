@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { ColorModeScript } from 'nextjs-color-mode';
 import React from 'react';
 import { GlobalStyle } from 'components/GlobalStyles';
+export const fetchCache = 'force-no-store';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
