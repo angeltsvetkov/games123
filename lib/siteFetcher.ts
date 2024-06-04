@@ -8,6 +8,7 @@ export async function getSite() {
     accessToken: process.env.ACCESS_TOKEN
   });
 
+
   return client.getEntries({
     content_type: "productPage",
     limit: 1,

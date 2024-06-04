@@ -52,16 +52,16 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
         <WhiteBackgroundContainer>
           <Hero title={site.title} subtitle={site.subtitle} tag="productivity" image={getImageUrl(site?.heroImage)} primaryCta={site?.buttons[0]?.fields} secondaryCta={site?.buttons[1]?.fields} />
           {site?.references?.fields?.enabled && <Partners label={site?.references?.fields?.label} images={site?.references?.fields?.images} />}
-          {site.sections.map((section: { fields: { image: any; title: string; tag: string; imagePosition: string; content: Document; }; }, index: number) => {
+          {site?.sections?.map((section: { fields: { image: any; title: string; tag: string; imagePosition: string; content: Document; }; }, index: number) => {
             return <BasicSection key={index} imageUrl={ getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
               {documentToReactComponents(section?.fields?.content, options)}
             </BasicSection>
           }
           )}
+          <FeaturesGallery title="How does it work?" tag="" tabs={site?.usecases} />
         </WhiteBackgroundContainer>
         <DarkerBackgroundContainer>
           <Cta title={site?.cta?.fields?.title} tag={site?.cta?.fields?.tag} content={documentToReactComponents(site?.cta?.fields?.content)} primaryCta={site?.cta?.fields?.buttons[0]?.fields} secondaryCta={site?.cta?.fields?.buttons[1]?.fields} />
-          <FeaturesGallery title="TEST" tag="TEST" tabs={site?.usecases} />
           <Features features={site.features} />
           {/* <Testimonials /> */}
           {/* <ScrollableBlogPosts posts={posts} /> */}
