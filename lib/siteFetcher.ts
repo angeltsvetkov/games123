@@ -13,7 +13,7 @@ export async function getSite() {
     content_type: "productPage",
     limit: 1,
     include: 10,
-    "fields.id": "pmboard.net",
+    "fields.id": process.env.SITE_ID,
   }).then(function (entry:any) {
     return entry.items[0].fields;
   });
