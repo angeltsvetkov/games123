@@ -57,7 +57,7 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
           <Hero title={site.title} subtitle={site.subtitle} tag="productivity" image={getImageUrl(site?.heroImage)} primaryCta={site?.buttons[0]?.fields} secondaryCta={site?.buttons[1]?.fields} />
           {site?.references?.fields?.enabled && <Partners label={site?.references?.fields?.label} images={site?.references?.fields?.images} />}
           {site?.sections?.map((section: { fields: { image: any; title: string; tag: string; imagePosition: string; content: Document; }; }, index: number) => {
-            return <BasicSection key={index} imageUrl={getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
+            return <BasicSection key={index} imageUrl={getImageUrl(section?.fields?.image)!} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
               {documentToReactComponents(section?.fields?.content, options)}
             </BasicSection>
           }

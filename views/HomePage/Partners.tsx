@@ -37,7 +37,7 @@ export default function Partners({label, images}: {label:any, images:any}) {
       >
         {images.map((image: React.Key | null | undefined) => (
           <SwiperSlide key={image}>
-            <NextImage src={getImageUrl(image)} alt={getImageTitle(image)} width={128} height={128} />
+            <NextImage src={getImageUrl(image)!} alt={getImageTitle(image)} width={128} height={128} />
           </SwiperSlide>
         ))}
       </Swiper>

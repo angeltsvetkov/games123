@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import Link from 'next/link';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import Container from 'components/Container';
@@ -10,22 +10,22 @@ import { media } from 'utils/media';
 
 
 
-export default function Games({ list, primaryCta }: { list: any, primaryCta: Object }) {
+export default function Games({ list, primaryCta }: { list: any, primaryCta: {url: URL, label:String} }) {
   return (
     <GamesWrapper>
       <Contents>
         {list.map((game: any, idx: any) => {
           console.log("GAME: " + JSON.stringify(game));
           return (
-            <GameCard key={idx} title={game?.fields?.title} imageUrl={getImageUrl(game?.fields?.image)}></GameCard>
+            <GameCard key={idx} title={game?.fields?.title} imageUrl={getImageUrl(game?.fields?.image)!}></GameCard>
           )
         })}
         <CTAWrapper>
-          {primaryCta && <NextLink href={primaryCta?.url} passHref>
+          {primaryCta && <Link href={primaryCta?.url}>
             <Button>
               {primaryCta?.label}
             </Button>
-          </NextLink>}
+          </Link>}
         </CTAWrapper>
       </Contents>
     </GamesWrapper>

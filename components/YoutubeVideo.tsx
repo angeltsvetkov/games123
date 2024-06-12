@@ -12,7 +12,7 @@ export default function YoutubeVideo(props: YoutubeVideoProps) {
   return (
     <VideoContainer>
       <Video>
-        <iframe width="1280" height="720" src={url + "?autoplay=1&controls=0&playlist=lcpPOdhA4tc&loop=1"} title={title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="1280" height="720" src={url + "?autoplay=1&controls=0&playlist=lcpPOdhA4tc&loop=1"} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
       </Video>
     </VideoContainer>
   );
