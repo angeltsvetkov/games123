@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
   --secondBackground: 255,255,255;
   --text: 10,18,30;
   --textSecondary: 255,255,255;
-  --primary: 109,175,165; 
+  --primary: 148,136, 205; 
   --secondary: 10,18,30;
   --tertiary: 231,241,251;
   --cardBackground: 255,255,255;
@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 :root {
-  --font: 'Poppins', sans-serif;
+  --font: 'Tektur','Poppins', sans-serif;
   
   --shadow-md: 0 2px 4px 0 rgb(12 0 46 / 4%);
   --shadow-lg: 0 10px 14px 0 rgb(12 0 46 / 6%);

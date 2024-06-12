@@ -16,12 +16,12 @@ import { HamburgerIcon } from './HamburgerIcon';
 const ColorSwitcher = dynamic(() => import('../components/ColorSwitcher'), { ssr: false });
 
 type NavbarProps = {
-  map(arg0: (singleItem: any) => JSX.Element): React.ReactNode; items: NavItems 
+  map(arg0: (singleItem: any) => JSX.Element): React.ReactNode; items: NavItems
 };
 type ScrollingDirections = 'up' | 'down' | 'none';
 type NavbarContainerProps = { hidden: boolean; transparent: boolean };
 
-export default function Navbar({ items, logo }: {items:any, logo:any}) {
+export default function Navbar({ items, logo }: { items: any, logo: any }) {
   const router = useRouter();
   const { toggle } = Drawer.useDrawer();
   const [scrollingDirection, setScrollingDirection] = useState<ScrollingDirections>('none');
@@ -71,11 +71,11 @@ export default function Navbar({ items, logo }: {items:any, logo:any}) {
       <Content>
         <NextLink href="/" passHref>
           <LogoWrapper>
-            <Image src={getImageUrl(logo)} width={200} height={100} alt={getImageTitle(logo)}/><div>PM Board</div>
+            {logo && <Image src={getImageUrl(logo)} width={200} height={100} alt={getImageTitle(logo)} />}
           </LogoWrapper>
         </NextLink>
         <NavItemList>
-          {items.map((singleItem:any) => (
+          {items.map((singleItem: any) => (
             <NavItem key={singleItem.label} {...singleItem} />
           ))}
         </NavItemList>

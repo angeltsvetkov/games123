@@ -20,9 +20,9 @@ export default function Cta({title, tag, content, primaryCta, secondaryCta }: {t
           </Description>
           <ButtonGroup>
           {primaryCta && <NextLink href={primaryCta?.url} passHref>
-            <Button>
+            <OutlinedButton>
               {primaryCta?.label}
-            </Button>
+            </OutlinedButton>
           </NextLink>}
           {secondaryCta && <NextLink href={secondaryCta?.url} passHref>
             <Button transparent>
@@ -71,5 +71,5 @@ const OutlinedButton = styled(Button)`
 `;
 
 const CtaWrapper = styled.div`
-  background: rgb(var(--secondary));
+  background: rgb(var(--primary));
 `;

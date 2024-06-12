@@ -37,6 +37,10 @@ import { media } from 'utils/media';
 // ];
 
 export default function FeaturesGallery({title, tag, tabs }: {title:any, tag:any, tabs:any}) {
+
+  if(!tabs){
+    tabs=[];
+  }
   const [currentTab, setCurrentTab] = useState(tabs[0]);
 
   const imagesMarkup = tabs.map((singleTab: { fields: { title: React.Key | null | undefined; image: any; }; }, idx: number) => {

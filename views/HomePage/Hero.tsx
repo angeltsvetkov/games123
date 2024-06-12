@@ -7,12 +7,12 @@ import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import { media } from 'utils/media';
 
-export default function Hero({ title, subtitle, tag, image, primaryCta, secondaryCta }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any }) {
+export default function Hero({ title, subtitle, image, primaryCta, secondaryCta }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any }) {
   return (
     <HeroWrapper>
       <Contents>
-        {tag && <CustomOverTitle>{tag}</CustomOverTitle>}
-        {title && <Heading>{title}</Heading>}
+        {title && <Heading className=''>{title}</Heading>}
+        <CustomOverTitle>от Viply</CustomOverTitle>
         {subtitle && <Description>
           {subtitle}
         </Description>}
@@ -33,8 +33,8 @@ export default function Hero({ title, subtitle, tag, image, primaryCta, secondar
         <Image
           src={image}
           alt="test"
-          width="900"
-          height="700"
+          width="800"
+          height="800"
         />
       </ImageContainer>}
     </HeroWrapper>
@@ -95,14 +95,14 @@ const Description = styled.p`
 `;
 
 const CustomOverTitle = styled(OverTitle)`
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 `;
 
 const Heading = styled.h1`
   font-size: 6rem;
   font-weight: bold;
   line-height: 1.1;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
   letter-spacing: -0.03em;
 
   ${media('<=tablet')} {

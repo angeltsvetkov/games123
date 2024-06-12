@@ -15,60 +15,66 @@ import Features from 'views/HomePage/Features';
 import FeaturesGallery from 'views/HomePage/FeaturesGallery';
 import Hero from 'views/HomePage/Hero';
 import Partners from 'views/HomePage/Partners';
+import Games from 'views/HomePage/Games';
+import YoutubeVideo from 'components/YoutubeVideo';
 
 export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {
   const options = {
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node:any, children:any) => <p className='pt-5'>{children}</p>,
-      [BLOCKS.UL_LIST]: (node:any, children:any) => (
-        <ul className="pt-6">{children}</ul>
+      [BLOCKS.PARAGRAPH]: (node: any, children: any) => <p className='pt-5'>{children}</p>,
+      [BLOCKS.UL_LIST]: (node: any, children: any) => (
+        <ul className="pt-20">{children}</ul>
       ),
-      [BLOCKS.OL_LIST]: (node:any, children:any) => (
+      [BLOCKS.OL_LIST]: (node: any, children: any) => (
         <ol>{children}</ol>
       ),
-      [BLOCKS.LIST_ITEM]: (node:any, children:any) => <li><span>{children}</span></li>,
+      [BLOCKS.LIST_ITEM]: (node: any, children: any) => <li><span>{children}</span></li>,
     },
   };
-
+  if(!site.navigation){
+    site.navigation = [];
+  }
   const navItems: NavItems = site.navigation.map(((navItem: { fields: { label: any; url: any; }; }) => {
     return {
       label: navItem?.fields?.label,
       url: navItem?.fields?.url
     }
   }));
-
+  console.log(site)
   return (
     <>
       <Head>
-        <title>{site.title}</title>
+        <title className='bg-red-400'>{site.title}</title>
         <meta
           name="description"
           content={site.subtitle}
         />
         <link rel="icon" type="image/png" href={getImageUrl(site.favicon)} />
       </Head>
-      <Navbar items={navItems} logo={site.logo} />
+      {site.navigation.length > 0 && <Navbar items={navItems} logo={site.logo} />}
       <HomepageWrapper>
         <WhiteBackgroundContainer>
           <Hero title={site.title} subtitle={site.subtitle} tag="productivity" image={getImageUrl(site?.heroImage)} primaryCta={site?.buttons[0]?.fields} secondaryCta={site?.buttons[1]?.fields} />
           {site?.references?.fields?.enabled && <Partners label={site?.references?.fields?.label} images={site?.references?.fields?.images} />}
           {site?.sections?.map((section: { fields: { image: any; title: string; tag: string; imagePosition: string; content: Document; }; }, index: number) => {
-            return <BasicSection key={index} imageUrl={ getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
+            return <BasicSection key={index} imageUrl={getImageUrl(section?.fields?.image)} title={section?.fields?.title} overTitle={section?.fields?.tag} reversed={section?.fields?.imagePosition === "right"}>
               {documentToReactComponents(section?.fields?.content, options)}
             </BasicSection>
           }
           )}
-          <FeaturesGallery title="How does it work?" tag="" tabs={site?.usecases} />
+          <Games list={site?.games} primaryCta={site?.buttons[0]?.fields}/>
+          {site?.usecases && <FeaturesGallery title="How does it work?" tag="" tabs={site?.usecases} />}
         </WhiteBackgroundContainer>
         <DarkerBackgroundContainer>
+          <YoutubeVideo url={site.youtubeUrl} title={site.title}></YoutubeVideo>
           <Cta title={site?.cta?.fields?.title} tag={site?.cta?.fields?.tag} content={documentToReactComponents(site?.cta?.fields?.content)} primaryCta={site?.cta?.fields?.buttons[0]?.fields} secondaryCta={site?.cta?.fields?.buttons[1]?.fields} />
           <Features features={site.features} />
           {/* <Testimonials /> */}
           {/* <ScrollableBlogPosts posts={posts} /> */}
         </DarkerBackgroundContainer>
       </HomepageWrapper>
-      <WaveCta />
-      <Footer footer={site.footer}/>
+      {/* <WaveCta /> */}
+      <Footer footer={site.footer} />
     </>
   );
 }
@@ -95,7 +101,7 @@ const WhiteBackgroundContainer = styled.div`
   }
 
   & > *:not(:first-child) {
-    margin-top: 15rem;
+    margin-top: 5rem;
   }
 `;
 

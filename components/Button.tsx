@@ -5,13 +5,14 @@ type ButtonProps = PropsWithChildren<{ transparent?: boolean }>;
 
 const Button = styled.a<ButtonProps>`
   border: none;
+  width: 30rem;
   background: none;
   display: inline-block;
   text-decoration: none;
   text-align: center;
   background: ${(p) => (p.transparent ? 'transparent' : 'rgb(var(--primary))')};
   padding: 1.75rem 2.25rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
   color: ${(p) => (p.transparent ? 'rgb(var(--text))' : 'rgb(var(--textSecondary))')};
   text-transform: uppercase;
   font-family: var(--font);

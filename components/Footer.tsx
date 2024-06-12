@@ -11,6 +11,9 @@ type FooterItems = SingleFooterList[];
 
 export default function Footer({footer}:{footer:any}) {
   
+  if(!footer){
+    footer = []
+  }
   const footerItems: FooterItems = footer.map((section:any)=> {
     let footerSection = { 
       title: section?.fields?.title,
@@ -29,7 +32,7 @@ export default function Footer({footer}:{footer:any}) {
     <FooterWrapper>
       <Container>
         <ListContainer>
-          {footerItems.map((singleItem, idx) => (
+          {footerItems && footerItems.map((singleItem, idx) => (
             <FooterList key={idx} {...singleItem} />
           ))}
         </ListContainer>
@@ -53,7 +56,7 @@ export default function Footer({footer}:{footer:any}) {
               </a>
             </NextLink> */}
           </ShareBar>
-          <Copyright>&copy; Copyright 2024 PM Board</Copyright>
+          <Copyright>&copy; Copyright 2024 Viply</Copyright>
         </BottomBar>
       </Container>
     </FooterWrapper>

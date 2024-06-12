@@ -15,6 +15,7 @@ export async function getSite() {
     include: 10,
     "fields.id": process.env.SITE_ID,
   }).then(function (entry:any) {
+    console.log(JSON.stringify(entry.items[0].fields))
     return entry.items[0].fields;
   });
 }
