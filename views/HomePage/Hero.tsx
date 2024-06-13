@@ -6,8 +6,7 @@ import ButtonGroup from 'components/ButtonGroup';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import { media } from 'utils/media';
-
-export default function Hero({ title, subtitle, image, primaryCta, secondaryCta }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any }) {
+export default function Hero({ title, subtitle, image, primaryCta, secondaryCta, price, pricingHint }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any, price: any, pricingHint: any }) {
   return (
     <HeroWrapper>
       <Contents>
@@ -16,6 +15,8 @@ export default function Hero({ title, subtitle, image, primaryCta, secondaryCta 
         {subtitle && <Description>
           {subtitle}
         </Description>}
+        <Price>{price}</Price>
+        <PriceHint>{pricingHint}</PriceHint>
         <CustomButtonGroup>
           {primaryCta && <NextLink href={primaryCta?.url} passHref>
             <Button>
@@ -59,6 +60,18 @@ const Contents = styled.div`
   ${media('<=desktop')} {
     max-width: 100%;
   }
+`;
+
+const Price = styled.div`
+  margin-top: 4rem;
+  font-size: xxx-large;
+  color: #707070;
+  font-weight: 700;
+`;
+
+const PriceHint = styled.div`
+  font-size: large;
+  color: #70707087;
 `;
 
 const CustomButtonGroup = styled(ButtonGroup)`

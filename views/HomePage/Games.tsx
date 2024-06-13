@@ -15,7 +15,6 @@ export default function Games({ list, primaryCta }: { list: any, primaryCta: {ur
     <GamesWrapper>
       <Contents>
         {list.map((game: any, idx: any) => {
-          console.log("GAME: " + JSON.stringify(game));
           return (
             <GameCard key={idx} title={game?.fields?.title} imageUrl={getImageUrl(game?.fields?.image)!}></GameCard>
           )

@@ -1,32 +1,41 @@
 import React from 'react';
-import styled from 'styled-components';
+import YouTube from 'react-youtube';
+import styles from 'app/ui/YoutubeVideo.module.css';
 
-interface YoutubeVideoProps {
-  title?: string;
-  url: string;
-}
+const YoutubeVideo = ({ videoId }: { videoId: string }) => {
+  // Set up event handlers
+  const onReady = (event: any) => {
+    // Access the player instance
+    const player = event.target;
 
-export default function YoutubeVideo(props: YoutubeVideoProps) {
-  const { title, url } = props;
+    // For example, you can automatically play the video
+    player.playVideo();
+  };
+
+  const onError = (error: any) => {
+    console.error('YouTube Player Error:', error);
+  };
+
+  const opts = {
+    height: '728',
+    width: '1280',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+      controls: 0
+    },
+  };
 
   return (
-    <VideoContainer>
-      <Video>
-        <iframe width="1280" height="720" src={url + "?autoplay=1&controls=0&playlist=lcpPOdhA4tc&loop=1"} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-      </Video>
-    </VideoContainer>
+    <div className={styles.videoplayer}>
+      <YouTube
+        videoId={videoId}
+        opts={opts}
+        onReady={onReady}
+        onError={onError}
+      />
+    </div>
   );
-}
+};
 
-export const VideoContainer = styled.div`
-  display: block;
-  border-radius: 20px;
-  margin: auto;
-  width: 70%;
-  aspect-ratio: 16 / 9;
-  width: 100%;
-`;
-export const Video = styled.div`
-  width: 100%;
-  margin-left: 15%;
-`;
+export default YoutubeVideo;
