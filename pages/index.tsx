@@ -40,7 +40,6 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
       url: navItem?.fields?.url
     }
   }));
-  console.log(site)
   return (
     <>
       <Head>
