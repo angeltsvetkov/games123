@@ -1,12 +1,11 @@
 import Image from 'next/image'
-import NextLink from 'next/link';
 import styled from 'styled-components';
-import Button from 'components/Button';
 import ButtonGroup from 'components/ButtonGroup';
+import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
 import { media } from 'utils/media';
-export default function Hero({ title, subtitle, image, primaryCta, secondaryCta, price, pricingHint }: { title:any, subtitle:any, tag:any, image:any, primaryCta:any, secondaryCta:any, price: any, pricingHint: any }) {
+export default function Hero({ title, subtitle, image, primaryCta, secondaryCta, price, pricingHint }: { title: any, subtitle: any, tag: any, image: any, primaryCta: any, secondaryCta: any, price: any, pricingHint: any }) {
   return (
     <HeroWrapper>
       <Contents>
@@ -18,16 +17,12 @@ export default function Hero({ title, subtitle, image, primaryCta, secondaryCta,
         <Price>{price}</Price>
         <PriceHint>{pricingHint}</PriceHint>
         <CustomButtonGroup>
-          {primaryCta && <NextLink href={primaryCta?.url} passHref>
+          {/* {primaryCta && <NextLink href={primaryCta?.url} passHref>
             <Button>
               {primaryCta?.label}
             </Button>
-          </NextLink>}
-          {secondaryCta && <NextLink href={secondaryCta?.url} passHref>
-            <Button transparent>
-              {secondaryCta?.label}
-            </Button>
-          </NextLink>}
+          </NextLink>} */}
+          {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-Hero" type="normal"></ButtonLink>}
         </CustomButtonGroup>
       </Contents>
       {image && <ImageContainer>

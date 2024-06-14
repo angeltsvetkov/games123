@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import ButtonGroup from 'components/ButtonGroup';
 import Container from 'components/Container';
 import OverTitle from 'components/OverTitle';
@@ -19,16 +19,8 @@ export default function Cta({title, tag, content, primaryCta, secondaryCta }: {t
             {content}
           </Description>
           <ButtonGroup>
-          {primaryCta && <NextLink href={primaryCta?.url} passHref>
-            <OutlinedButton>
-              {primaryCta?.label}
-            </OutlinedButton>
-          </NextLink>}
-          {secondaryCta && <NextLink href={secondaryCta?.url} passHref>
-            <Button transparent>
-              {secondaryCta?.label}
-            </Button>
-          </NextLink>}
+          {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-CTA" type="outlined">
+            </ButtonLink>}
         </ButtonGroup>
         </Stack>
       </Container>
@@ -65,10 +57,6 @@ const Stack = styled.div`
   }
 `;
 
-const OutlinedButton = styled(Button)`
-  border: 1px solid rgb(var(--textSecondary));
-  color: rgb(var(--textSecondary));
-`;
 
 const CtaWrapper = styled.div`
   background: rgb(var(--primary));

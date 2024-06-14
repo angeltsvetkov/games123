@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import styled from 'styled-components';
-import Button from 'components/Button';
+import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import GameCard from 'components/GameCard';
 import OverTitle from 'components/OverTitle';
@@ -20,11 +19,7 @@ export default function Games({ list, primaryCta }: { list: any, primaryCta: {ur
           )
         })}
         <CTAWrapper>
-          {primaryCta && <Link href={primaryCta?.url}>
-            <Button>
-              {primaryCta?.label}
-            </Button>
-          </Link>}
+        {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-Games" type="normal" />}
         </CTAWrapper>
       </Contents>
     </GamesWrapper>
