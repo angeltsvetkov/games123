@@ -9,7 +9,7 @@ import { media } from 'utils/media';
 
 
 
-export default function Games({ list, primaryCta }: { list: any, primaryCta: {url: URL, label:String} }) {
+export default function Games({ list, primaryCta }: { list: any, primaryCta: any }) {
   return (
     <GamesWrapper>
       <Contents>
@@ -19,7 +19,7 @@ export default function Games({ list, primaryCta }: { list: any, primaryCta: {ur
           )
         })}
         <CTAWrapper>
-        {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-Games" type="normal" />}
+        {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-Hero" type="normal"></ButtonLink>}
         </CTAWrapper>
       </Contents>
     </GamesWrapper>
