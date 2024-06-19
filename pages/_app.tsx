@@ -3,7 +3,6 @@ import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import mixpanel from 'mixpanel-browser';
-// import mixpanel from 'mixpanel-browser';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
 import { ColorModeScript } from 'nextjs-color-mode';
@@ -12,13 +11,9 @@ import { GlobalStyle } from 'components/GlobalStyles';
 export const fetchCache = 'force-no-store';
 
 export const revalidate = 0;
-// mixpanel.init('746e28b1f3129707e9b4821254378048', {debug: true, track_pageview: true, persistence: 'localStorage'});
-// mixpanel.track('Landing Page', {
-//   'Landing Type': 'Organic'
-// })
-mixpanel.init('746e28b1f3129707e9b4821254378048', {debug: true, track_pageview: "url-with-path", persistence: 'localStorage'});
-mixpanel.track_pageview();
 function MyApp({ Component, pageProps }: AppProps) {
+  mixpanel.init('746e28b1f3129707e9b4821254378048', { debug: true, track_pageview: "url-with-path", persistence: 'localStorage' });
+  mixpanel.track_pageview();
   return (
     <>
       <Head>

@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import BasicSection from 'components/BasicSection';
 import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
-import WaveCta from 'components/WaveCta';
 import { getSite } from 'lib/siteFetcher';
 import { NavItems } from 'types';
 import { getImageUrl } from 'utils/getImageUrl';
