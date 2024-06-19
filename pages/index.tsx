@@ -17,6 +17,8 @@ import Hero from 'views/HomePage/Hero';
 import Partners from 'views/HomePage/Partners';
 import Games from 'views/HomePage/Games';
 import YoutubeVideo from 'components/YoutubeVideo';
+import Script from 'next/script';
+
 
 export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {
   const options = {
@@ -31,7 +33,7 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
       [BLOCKS.LIST_ITEM]: (node: any, children: any) => <li><span>{children}</span></li>,
     },
   };
-  if(!site.navigation){
+  if (!site.navigation) {
     site.navigation = [];
   }
   const navItems: NavItems = site.navigation.map(((navItem: { fields: { label: any; url: any; }; }) => {
@@ -61,7 +63,7 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
             </BasicSection>
           }
           )}
-          <Games list={site?.games} primaryCta={site?.buttons[0]?.fields}/>
+          <Games list={site?.games} primaryCta={site?.buttons[0]?.fields} />
           {site?.usecases && <FeaturesGallery title="How does it work?" tag="" tabs={site?.usecases} />}
         </WhiteBackgroundContainer>
         <DarkerBackgroundContainer>
