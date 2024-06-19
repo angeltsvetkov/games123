@@ -12,7 +12,7 @@ export const fetchCache = 'force-no-store';
 
 export const revalidate = 0;
 function MyApp({ Component, pageProps }: AppProps) {
-  mixpanel.init('746e28b1f3129707e9b4821254378048', { debug: true, track_pageview: "url-with-path", persistence: 'localStorage' });
+  mixpanel.init('746e28b1f3129707e9b4821254378048', { debug: true, track_pageview: true, persistence: 'localStorage' });
   mixpanel.track_pageview();
   return (
     <>
