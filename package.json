@@ -11,7 +11,7 @@
   "dependencies": {
     "@accessible/drawer": "^3.0.2",
     "@contentful/rich-text-html-renderer": "^16.3.4",
-    "@contentful/rich-text-react-renderer": "^15.19.4",
+    "@contentful/rich-text-react-renderer": "^15.21.2",
     "@fullstory/browser": "^2.0.5",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@sendgrid/mail": "^7.7.0",
