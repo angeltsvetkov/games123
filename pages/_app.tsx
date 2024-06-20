@@ -2,7 +2,8 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
-import * as FullStory from '@fullstory/browser'
+// import * as FullStory from '@fullstory/browser'
+import { init } from '@fullstory/browser';
 import mixpanel from 'mixpanel-browser';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     mixpanel.init('746e28b1f3129707e9b4821254378048', { debug: true, track_pageview: true, persistence: 'localStorage' });
     mixpanel.track_pageview();
-    FullStory.init({ orgId: 'o-1Z810J-na1' });
+    const orgId = 'o-1Z810J-na1';
+    init({ orgId }, ({ sessionUrl }) => console.log(`Started session: ${sessionUrl}`));
+    // FullStory.init({ orgId: 'o-1Z810J-na1' });
   }, []);
   return (
     <>
