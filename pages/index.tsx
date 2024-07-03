@@ -16,7 +16,6 @@ import Hero from 'views/HomePage/Hero';
 import Partners from 'views/HomePage/Partners';
 import Games from 'views/HomePage/Games';
 import YoutubeVideo from 'components/YoutubeVideo';
-import Script from 'next/script';
 
 
 export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {

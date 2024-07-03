@@ -11,10 +11,12 @@ import { ColorModeScript } from 'nextjs-color-mode';
 import { useEffect } from 'react';
 import React from 'react';
 import { GlobalStyle } from 'components/GlobalStyles';
+import ReactGA from "react-ga4";
 export const fetchCache = 'force-no-store';
 
 export const revalidate = 0;
 function MyApp({ Component, pageProps }: AppProps) {
+  ReactGA.initialize("AW-16632563353");
   useEffect(() => {
     mixpanel.init('746e28b1f3129707e9b4821254378048', { debug: true, track_pageview: true, persistence: 'localStorage' });
     mixpanel.track_pageview();
