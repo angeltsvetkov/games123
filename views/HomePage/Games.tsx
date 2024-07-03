@@ -6,9 +6,6 @@ import OverTitle from 'components/OverTitle';
 import { getImageUrl } from 'utils/getImageUrl';
 import { media } from 'utils/media';
 
-
-
-
 export default function Games({ list, primaryCta }: { list: any, primaryCta: any }) {
   return (
     <GamesWrapper>

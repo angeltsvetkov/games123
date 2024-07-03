@@ -16,6 +16,7 @@ import Hero from 'views/HomePage/Hero';
 import Partners from 'views/HomePage/Partners';
 import Games from 'views/HomePage/Games';
 import YoutubeVideo from 'components/YoutubeVideo';
+import Buy from 'views/HomePage/Buy';
 
 
 export default function Homepage({ site }: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -70,6 +71,7 @@ export default function Homepage({ site }: InferGetStaticPropsType<typeof getSta
           <Features features={site.features} />
           {/* <Testimonials /> */}
           {/* <ScrollableBlogPosts posts={posts} /> */}
+          <Buy title={site?.title} price={site.price} imageUrl={getImageUrl(site?.heroImage)!}></Buy>
         </DarkerBackgroundContainer>
       </HomepageWrapper>
       {/* <WaveCta /> */}
