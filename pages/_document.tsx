@@ -1,6 +1,8 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import React from 'react';
 import { ServerStyleSheet } from 'styled-components';
+import { GoogleAnalytics } from '@next/third-parties/google'
+import Script from 'next/script';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -32,6 +34,18 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-16632563353" />
+          <Script
+            id="gtag"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'AW-16632563353');`,
+            }}
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet" />
