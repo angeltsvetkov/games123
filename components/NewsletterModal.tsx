@@ -40,7 +40,7 @@ export default function NewsletterModal({ onClose }: NewsletterModalProps) {
                 <CloseIconContainer>
                   <CloseIcon onClick={onClose} />
                 </CloseIconContainer>
-                {hasSignedUp && <MailSentState />}
+                {hasSignedUp && <MailSentState message="Message sent" />}
                 {!hasSignedUp && (
                   <>
                     <Title>Are you ready to enroll to the best newsletter ever?</Title>

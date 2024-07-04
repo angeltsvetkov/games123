@@ -44,7 +44,7 @@ export default function FormSection() {
   const isSubmitDisabled = Object.keys(errors).length > 0 || isDisabled;
 
   if (hasSuccessfullySentMail) {
-    return <MailSentState />;
+    return <MailSentState message="Message sent!" />;
   }
 
   return (
