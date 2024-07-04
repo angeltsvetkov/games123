@@ -22,10 +22,14 @@ export default function Buy
   const [hasErrored, setHasErrored] = useState(false);
   const { register, handleSubmit, formState } = useForm();
   const { isSubmitSuccessful, isSubmitting, isSubmitted, errors } = formState;
+  const [buttonLabel, setButtonLabel] = useState("ПОРЪЧАЙ");
 
   async function onSubmit(payload: EmailPayload) {
     try {
-      const res = await fetch('https://script.google.com/macros/s/AKfycbyQu-29U5vA7jKw7RH3sPubF_mdKhVTOpOT7gzFbiaEUjY_x0dyU6zI0IxgGwxj0r01Cg/exec', {
+      setButtonLabel("Изпращане...");
+      const res = await fetch('https://script.google.com/macros/s/AKfycbzTALG4pdOLRBFlqaKJHGLwKWbZaEqQEca6pmKX5P-aKO4mw_DF4hQ4vhw5X75LoYxEzg/exec', {
+        redirect: "follow",
+        mode: 'no-cors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +53,7 @@ export default function Buy
   const isSubmitDisabled = Object.keys(errors).length > 0 || isDisabled;
 
   if (hasSuccessfullySentMail) {
-    return <MailSentState />;
+    return <MailSentState message='Поръчката ви е приета успешно!' />;
   }
   return (
     <Container id="buy">
@@ -66,7 +70,7 @@ export default function Buy
         <FormContainer>
           <Price>{price}</Price>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            {hasErrored && <ErrorMessage>Couldn&apos;t send email. Please try again.</ErrorMessage>}
+            {hasErrored && <ErrorMessage>Възникна грешка. Моля опитайте отново.</ErrorMessage>}
             <InputGroup>
               <InputStack>
                 {errors.name && <ErrorMessage>Моля да предоставите име и фамилия.</ErrorMessage>}
@@ -87,9 +91,9 @@ export default function Buy
                 {...register('address', { required: true })}
               />
             </InputStack>
-            <p>* Предоставените данни ще бъдат предоставени на ЕКОНТ ЕКСПРЕС АД за целите на доставката и изтрити.</p>
+            <p>* Личните ви данните ще бъдат предоставени на ЕКОНТ ЕКСПРЕС АД за целите на доставката и изтрити.</p>
             <Button as="button" type="submit" disabled={isSubmitDisabled}>
-              ПОРЪЧАЙ
+              {buttonLabel}
             </Button>
           </Form>
         </FormContainer>

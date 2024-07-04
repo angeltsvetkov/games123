@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function MailSentState() {
+export default function MailSentState({ message }:{message:any}) {
   return (
     <Wrapper>
       <svg id="b76bd6b3-ad77-41ff-b778-1d1d054fe577" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 570 511.67482">
@@ -41,7 +41,7 @@ export default function MailSentState() {
           fill="#1673ff"
         />
       </svg>
-      <p>Mail successfully sent!</p>
+      <p>{message}</p>
     </Wrapper>
   );
 }
