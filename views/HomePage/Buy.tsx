@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Input from 'components/Input';
 import Button from 'components/Button';
 import MailSentState from '../../components/MailSentState';
+import ReactGA from "react-ga4";
 
 interface EmailPayload {
   name: string;
@@ -26,6 +27,13 @@ export default function Buy
 
   async function onSubmit(payload: EmailPayload) {
     try {
+      ReactGA.initialize("AW-16632563353");
+      ReactGA.gtag('event', 'conversion', {
+        'send_to': 'AW-16632563353/OBsgCNbpub8ZEJmNg_s9',
+        'value': 150.0,
+        'currency': 'BGN',
+        'transaction_id': ''
+    });
       setButtonLabel("Изпращане...");
       const res = await fetch('https://script.google.com/macros/s/AKfycbzTALG4pdOLRBFlqaKJHGLwKWbZaEqQEca6pmKX5P-aKO4mw_DF4hQ4vhw5X75LoYxEzg/exec', {
         redirect: "follow",
