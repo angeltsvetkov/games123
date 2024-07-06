@@ -8,7 +8,7 @@ import { media } from 'utils/media';
 
 export default function Games({ list, primaryCta }: { list: any, primaryCta: any }) {
   return (
-    <GamesWrapper>
+    <GamesWrapper id="games">
       <Contents>
         {list.map((game: any, idx: any) => {
           return (
@@ -16,7 +16,7 @@ export default function Games({ list, primaryCta }: { list: any, primaryCta: any
           )
         })}
         <CTAWrapper>
-        {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-Hero" type="normal"></ButtonLink>}
+        {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} type="normal"></ButtonLink>}
         </CTAWrapper>
       </Contents>
     </GamesWrapper>

@@ -75,8 +75,8 @@ export default function Navbar({ items, logo }: { items: any, logo: any }) {
           </LogoWrapper>
         </NextLink>
         <NavItemList>
-          {items.map((singleItem: any) => (
-            <NavItem key={singleItem.label} {...singleItem} />
+          {items.map((singleItem: any,idx: any) => (
+            <NavItem key={idx} {...singleItem} />
           ))}
         </NavItemList>
         <ColorSwitcherContainer>

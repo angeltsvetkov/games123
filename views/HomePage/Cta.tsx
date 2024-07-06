@@ -10,7 +10,7 @@ import { media } from 'utils/media';
 
 export default function Cta({ title, tag, content, primaryCta, secondaryCta }: { title: any, tag: any, content: any, primaryCta: any, secondaryCta: any }) {
   return (
-    <CtaWrapper>
+    <CtaWrapper id="why-to-buy">
       <Container>
         <Stack>
           <OverTitle>{tag}</OverTitle>
@@ -19,7 +19,7 @@ export default function Cta({ title, tag, content, primaryCta, secondaryCta }: {
             {content}
           </Description>
           <ButtonGroup>
-            {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} event="Buy-CTA" type="outlined" />}
+            {primaryCta && <ButtonLink url={primaryCta?.url} label={primaryCta?.label} type="outlined" />}
           </ButtonGroup>
         </Stack>
       </Container>

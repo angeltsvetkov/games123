@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from './Button';
 
-const ButtonLink = ({ url, label, event, type = 'regular' }: { url: string, label: string, event: string, type: string }) => {
+const ButtonLink = ({ url, label, type }: { url: string, label: string, type: string }) => {
 
   const handleClick = () => {
     window.location.replace(url);
   };
 
 
-  if (type && type === 'outlined') {
+  if (type && type == 'outlined') {
     return (<OutlinedButton onClick={handleClick}>
       {label}
     </OutlinedButton>)

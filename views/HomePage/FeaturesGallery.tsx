@@ -48,7 +48,7 @@ export default function FeaturesGallery({title, tag, tabs }: {title:any, tag:any
     const isFirst = idx === 0;
 
     return (
-      <ImageContainer key={singleTab?.fields?.title} isActive={isActive}>
+      <ImageContainer key={idx} isActive={isActive}>
         <NextImage src={getImageUrl(singleTab?.fields?.image)!} alt={getImageTitle(singleTab?.fields?.image)} layout="fill" objectFit="contain" priority={isFirst} />
       </ImageContainer>
     );

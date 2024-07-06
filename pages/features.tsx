@@ -70,7 +70,7 @@ export default function FeaturesPage() {
         <SectionTitle>Check out this quick introduction</SectionTitle>
         <CustomAutofitGrid>
           {FEATURES.map((singleFeature, idx) => (
-            <BasicCard key={singleFeature.title} {...singleFeature} />
+            <BasicCard key={idx} {...singleFeature} />
           ))}
         </CustomAutofitGrid>
       </Wrapper>
