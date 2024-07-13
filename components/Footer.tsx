@@ -1,8 +1,7 @@
-import NextLink from 'next/link';
-import { FacebookIcon, LinkedinIcon, TwitterIcon } from 'react-share';
 import styled from 'styled-components';
 import Container from 'components/Container';
 import { media } from 'utils/media';
+import Link from 'next/link';
 
 type SingleFooterListItem = { label: string; url: string };
 type FooterListItems = SingleFooterListItem[];
@@ -37,13 +36,12 @@ export default function Footer({footer}:{footer:any}) {
           ))}
         </ListContainer>
         <BottomBar>
-          <ShareBar>
-            {/* <NextLink href="https://www.twitter.com/my-saas-startup" passHref>
+          {/* <ShareBar>
+            <NextLink href="https://www.twitter.com/my-saas-startup" passHref>
               <a>
                 <TwitterIcon size={50} round={true} />
               </a>
             </NextLink>
-
             <NextLink href="https://www.facebook.com/my-saas-startup" passHref>
               <a>
                 <FacebookIcon size={50} round={true} />
@@ -54,8 +52,8 @@ export default function Footer({footer}:{footer:any}) {
               <a>
                 <LinkedinIcon size={50} round={true} />
               </a>
-            </NextLink> */}
-          </ShareBar>
+            </NextLink> 
+          </ShareBar> */}
           <Copyright>&copy; Copyright 2024 Viply</Copyright>
         </BottomBar>
       </Container>
@@ -77,9 +75,9 @@ function FooterList({ title, items }: SingleFooterList) {
 function ListItem({ label, url }: SingleFooterListItem) {
   return (
     <ListItemWrapper>
-      <NextLink href={url} passHref>
-        <a>{label}</a>
-      </NextLink>
+      {/* <Link href={url} passHref> */}
+        <a href={url}>{label}</a>
+      {/* </Link> */}
     </ListItemWrapper>
   );
 }
