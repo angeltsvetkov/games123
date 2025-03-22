@@ -50,7 +50,7 @@
     "@next/bundle-analyzer": "^13.3.1",
     "@types/mixpanel-browser": "^2.49.0",
     "@types/react": "^17.0.20",
-    "@types/react-mailchimp-subscribe": "^2.1.1",
+    "@types/react-mailchimp-subscribe": "^2.1.4",
     "@types/react-stars": "^2.2.4",
     "@types/styled-components": "^5.1.25",
     "@types/swiper": "^6.0.0",
